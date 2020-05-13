@@ -70,50 +70,32 @@
       var pw = document.getElementById("pw");
       var email = document.getElementById("email");
       var reg = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
+      
 
       if(fName.value!==""&&lName.value!==""&&pw.value!==""&&reg.test(email.value)) {
         return true;
-      } else {
-          if (fName.value=="") {
-            document.getElementById("fName-error-mark").style.visibility = "visible";
-            document.getElementById("fName-error-msg").style.visibility = "visible";
-            fName.style.border = "1.5px solid #f07e7e";
-          } else {
-              document.getElementById("fName-error-mark").style.visibility = null;
-              document.getElementById("fName-error-msg").style.visibility = null;
-              fName.style.border = null;
-            }          
-      
-          if (lName.value=="") {
-            document.getElementById("lName-error-mark").style.visibility = "visible";
-            document.getElementById("lName-error-msg").style.visibility = "visible";
-            lName.style.border = "1.5px solid #f07e7e";
-          } else {
-              document.getElementById("lName-error-mark").style.visibility = null;
-              document.getElementById("lName-error-msg").style.visibility = null;
-              lName.style.border = null;
-            }
-      
-          if (reg.test(email.value)==false) {
-            document.getElementById("email-error-mark").style.visibility = "visible";
-            document.getElementById("email-error-msg").style.visibility = "visible";
-            email.style.border = "1.5px solid #f07e7e";
-          } else {
-              document.getElementById("email-error-mark").style.visibility = null;
-              document.getElementById("email-error-msg").style.visibility = null;
-              email.style.border = null;
-            }
-      
-          if (pw.value=="") {
-            document.getElementById("pw-error-mark").style.visibility = "visible";
-            document.getElementById("pw-error-msg").style.visibility = "visible";
-            pw.style.border = "1.5px solid #f07e7e";
-          } else {
-              document.getElementById("pw-error-mark").style.visibility = null;
-              document.getElementById("pw-error-msg").style.visibility = null;
-              pw.style.border = null;
-            }
 
+      } else {
+          var input = document.querySelectorAll(".input input");
+          var errorMark = document.querySelectorAll(".input img");
+          var errorMsg = document.querySelectorAll(".input p");
+          for (let i=0; i<4; i++) {
+            if (input[i].value=="") {
+              input[i].style.border = "1.5px solid #f07e7e";
+              errorMark[i].style.visibility = "visible";
+              errorMsg[i].style.visibility = "visible";
+            } else if (input[i].id == "email") {
+                if (reg.test(email.value)==false) {
+                  input[i].style.border = "1.5px solid #f07e7e";
+                  errorMark[i].style.visibility = "visible";
+                  errorMsg[i].style.visibility = "visible";
+                } 
+              } else {
+                  input[i].style.border = null;
+                  errorMark[i].style.visibility = null;
+                  errorMsg[i].style.visibility = null;
+                } 
+          }
           return false
         }
     }    
