@@ -71,29 +71,30 @@
       var email = document.getElementById("email");
       var reg = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
       
-
       if(fName.value!==""&&lName.value!==""&&pw.value!==""&&reg.test(email.value)) {
         return true;
 
       } else {
-          var input = document.querySelectorAll(".input input");
-          var errorMark = document.querySelectorAll(".input img");
-          var errorMsg = document.querySelectorAll(".input p");
-          for (let i=0; i<4; i++) {
-            if (input[i].value=="") {
-              input[i].style.border = "1.5px solid #f07e7e";
-              errorMark[i].style.visibility = "visible";
-              errorMsg[i].style.visibility = "visible";
-            } else if (input[i].id == "email") {
+          var input = document.querySelectorAll(".input");
+          for (let i=0; i<input.length; i++) {
+            let inputBox = input[i].children[0];
+            let errorMark = input[i].children[1];
+            let errorMsg = input[i].children[2];
+            
+            if (inputBox.value=="") {
+              inputBox.style.border = "1.5px solid #f07e7e";
+              errorMark.style.visibility = "visible";
+              errorMsg.style.visibility = "visible";
+            } else if (inputBox.id == "email") {
                 if (reg.test(email.value)==false) {
-                  input[i].style.border = "1.5px solid #f07e7e";
-                  errorMark[i].style.visibility = "visible";
-                  errorMsg[i].style.visibility = "visible";
+                  inputBox.style.border = "1.5px solid #f07e7e";
+                  errorMark.style.visibility = "visible";
+                  errorMsg.style.visibility = "visible";
                 } 
               } else {
-                  input[i].style.border = null;
-                  errorMark[i].style.visibility = null;
-                  errorMsg[i].style.visibility = null;
+                  inputBox.style.border = null;
+                  errorMark.style.visibility = null;
+                  errorMsg.style.visibility = null;
                 } 
           }
           return false
