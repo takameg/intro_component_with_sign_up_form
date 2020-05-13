@@ -39,7 +39,7 @@
         <div class="input">
           <input id="email" type="text" placeholder="Email Address">
           <img id="email-error-mark" class="error-mark" src="images/icon-error.svg" alt="error">
-          <p id="email-error-msg" class="error-msg">Looks like this is not an email</p>
+          <p id="email-error-msg" class="error-msg">Email Address cannot be empty</p>
         </div>
 
         <div class="input">
@@ -89,7 +89,7 @@
                 if (reg.test(email.value)==false) {
                   inputBox.style.border = "1.5px solid #f07e7e";
                   errorMark.style.visibility = "visible";
-                  errorMsg.style.visibility = "visible";
+                  errorMsg.textContent = "Looks like this is not an email";
                 } 
               } else {
                   inputBox.style.border = null;
